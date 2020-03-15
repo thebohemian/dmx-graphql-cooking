@@ -1,0 +1,837 @@
+{
+    "topic_types": [
+        {
+            "value": "Baking ingredient",
+            "uri": "dmx.cooking.baking_ingredient",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // cake icon
+                        "dmx.webclient.icon": "\uf1fd",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Cereal product",
+            "uri": "dmx.cooking.cereal_product",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // scale icon
+                        "dmx.webclient.icon": "\uf24e",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Dairy product",
+            "uri": "dmx.cooking.dairy_product",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // beer icon
+                        "dmx.webclient.icon": "\uf0fc",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Fish",
+            "uri": "dmx.cooking.fish",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // fish icon
+                        "dmx.webclient.icon": "\uf578",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Fruit",
+            "uri": "dmx.cooking.fruit",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // apple icon
+                        "dmx.webclient.icon": "\uf5d1",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Herb",
+            "uri": "dmx.cooking.herb",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // icon
+                        "dmx.webclient.icon": "\uf4d8",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Legume",
+            "uri": "dmx.cooking.legume",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // balance-scale-left icon
+                        "dmx.webclient.icon": "\uf515",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Liquid",
+            "uri": "dmx.cooking.liquid",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // drop icon
+                        "dmx.webclient.icon": "\uf043",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Meat",
+            "uri": "dmx.cooking.meat",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // drumstick-bite icon
+                        "dmx.webclient.icon": "\uf6d7",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Nut",
+            "uri": "dmx.cooking.nut",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // lemon icon
+                        "dmx.webclient.icon": "\uf094",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Oil",
+            "uri": "dmx.cooking.oil",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // oil-can icon
+                        "dmx.webclient.icon": "\uf613",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Poultry",
+            "uri": "dmx.cooking.poultry",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // crow icon
+                        "dmx.webclient.icon": "\uf520",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Sauce",
+            "uri": "dmx.cooking.sauce",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // oil-can icon
+                        "dmx.webclient.icon": "\uf485",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Soy product",
+            "uri": "dmx.cooking.soy_product",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // oil-can icon
+                        "dmx.webclient.icon": "\uf06c",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Spice",
+            "uri": "dmx.cooking.spice",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // pepper-hot icon
+                        "dmx.webclient.icon": "\uf816",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Sweetener",
+            "uri": "dmx.cooking.sweetener",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // pepper-hot icon
+                        "dmx.webclient.icon": "\uf786",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Vegetable",
+            "uri": "dmx.cooking.vegetable",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // carrot icon
+                        "dmx.webclient.icon": "\uf787",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        // Definition of the topic types for the composite "Dish"
+        {
+            "value": "Name of Dish",
+            "uri": "dmx.cooking.name_of_dish",
+            "dataTypeUri": "dmx.core.text"
+        },
+        {
+            "value": "Preparation time in minutes",
+            "uri": "dmx.cooking.preparation_time",
+            "dataTypeUri": "dmx.core.number"
+        },
+        {
+            "value": "Cooking time in minutes",
+            "uri": "dmx.cooking.cooking_time",
+            "dataTypeUri": "dmx.core.number"
+        },
+        {
+            "value": "Gluten free",
+            "uri": "dmx.cooking.gluten_free",
+            "dataTypeUri": "dmx.core.boolean"
+        },
+        {
+            "value": "Lactose free",
+            "uri": "dmx.cooking.lactose_free",
+            "dataTypeUri": "dmx.core.boolean"
+        },
+        {
+            "value": "Vegetarian",
+            "uri": "dmx.cooking.vegetarian",
+            "dataTypeUri": "dmx.core.boolean"
+        },
+        {
+            "value": "Vegan",
+            "uri": "dmx.cooking.vegan",
+            "dataTypeUri": "dmx.core.boolean"
+        },
+        {
+            "value": "Halal",
+            "uri": "dmx.cooking.halal",
+            "dataTypeUri": "dmx.core.boolean"
+        },
+        {
+            "value": "Kosher",
+            "uri": "dmx.cooking.kosher",
+            "dataTypeUri": "dmx.core.boolean"
+        },
+        // Composition Definition of "Dish"
+        {
+            "value": "Dish",
+            "uri": "dmx.cooking.dish",
+            "dataTypeUri": "dmx.core.identity",
+            "compDefs": [
+                {
+                    "childTypeUri": "dmx.cooking.name_of_dish",
+                    "childCardinalityUri": "dmx.core.one"
+                },
+                {
+                    "childTypeUri": "dmx.cooking.preparation_time",
+                    "childCardinalityUri": "dmx.core.one"
+                },
+                {
+                    "childTypeUri": "dmx.cooking.cooking_time",
+                    "childCardinalityUri": "dmx.core.one"
+                },
+                {
+                    "childTypeUri": "dmx.cooking.gluten_free",
+                    "childCardinalityUri": "dmx.core.one"
+                },
+                {
+                    "childTypeUri": "dmx.cooking.vegetarian",
+                    "childCardinalityUri": "dmx.core.one"
+                },
+                {
+                    "childTypeUri": "dmx.cooking.vegan",
+                    "childCardinalityUri": "dmx.core.one"
+                }
+            ],
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // cutlery icon
+                        "dmx.webclient.icon": "\uf2e7",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        }
+    ],
+    "assoc_types": [
+        {
+            "value": "Source",
+            "uri": "dmx.cooking.Source",
+            "dataTypeUri": "dmx.core.text"
+        },
+        {
+            "value": "Ingredient Amount",
+            "uri": "dmx.cooking.ingredient_amount",
+            "dataTypeUri": "dmx.core.text"
+        }
+    ],
+    "topics": [
+        // Baking ingredients
+        {
+            "value": "Baking powder",
+            "typeUri": "dmx.cooking.baking_ingredient"
+        },
+        {
+            "value": "Baking soda",
+            "typeUri": "dmx.cooking.baking_ingredient"
+        },
+        {
+            "value": "Bittersweet chocolate",
+            "typeUri": "dmx.cooking.baking_ingredient"
+        },
+        {
+            "value": "Cocoa powder",
+            "typeUri": "dmx.cooking.baking_ingredient"
+        },
+        {
+            "value": "Tapioca flour",
+            "typeUri": "dmx.cooking.baking_ingredient"
+        },
+        // cereal products
+        {
+            "value": "Buckwheat flower",
+            "typeUri": "dmx.cooking.cereal_product"
+        },
+        {
+            "value": "Corn flour",
+            "typeUri": "dmx.cooking.cereal_product"
+        },
+        {
+            "value": "Cornstarch",
+            "typeUri": "dmx.cooking.cereal_product"
+        },
+        {
+            "value": "Oatmeal",
+            "typeUri": "dmx.cooking.cereal_product"
+        },
+        {
+            "value": "Pasta",
+            "typeUri": "dmx.cooking.cereal_product"
+        },
+        {
+            "value": "Rice",
+            "typeUri": "dmx.cooking.cereal_product"
+        },
+        {
+            "value": "Rice cake",
+            "typeUri": "dmx.cooking.cereal_product"
+        },
+        {
+            "value": "Rice noodles",
+            "typeUri": "dmx.cooking.cereal_product"
+        },
+        {
+            "value": "Seitan",
+            "typeUri": "dmx.cooking.cereal_product"
+        },
+        {
+            "value": "Spelled flour",
+            "typeUri": "dmx.cooking.cereal_product"
+        },
+        {
+            "value": "Wholemeal flour",
+            "typeUri": "dmx.cooking.cereal_product"
+        },
+        // Dairy products
+        {
+            "value": "Butter",
+            "typeUri": "dmx.cooking.dairy_product"
+        },
+        {
+            "value": "Cream",
+            "typeUri": "dmx.cooking.dairy_product"
+        },
+        // Fish
+        {
+            "value": "Salmon",
+            "typeUri": "dmx.cooking.fish"
+        },
+        // Fruit
+        {
+            "value": "Apple",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Banana",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Lemon",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Orange",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        // Herbs
+        {
+            "value": "Basil",
+            "typeUri": "dmx.cooking.herb"
+        },
+        {
+            "value": "Chives",
+            "typeUri": "dmx.cooking.herb"
+        },
+        {
+            "value": "Cilantro",
+            "typeUri": "dmx.cooking.herb"
+        },
+        {
+            "value": "Cress",
+            "typeUri": "dmx.cooking.herb"
+        },
+        {
+            "value": "Mint",
+            "typeUri": "dmx.cooking.herb"
+        },
+        {
+            "value": "Oregano",
+            "typeUri": "dmx.cooking.herb"
+        },
+        {
+            "value": "Parsley",
+            "typeUri": "dmx.cooking.herb"
+        },
+        {
+            "value": "Sage",
+            "typeUri": "dmx.cooking.herb"
+        },
+        {
+            "value": "Thai basil",
+            "typeUri": "dmx.cooking.herb"
+        },
+        {
+            "value": "Thyme",
+            "typeUri": "dmx.cooking.herb"
+        },
+        // Legumes
+        {
+            "value": "Black bean",
+            "typeUri": "dmx.cooking.legume"
+        },
+        {
+            "value": "White bean",
+            "typeUri": "dmx.cooking.legume"
+        },
+        {
+            "value": "Kidney bean",
+            "typeUri": "dmx.cooking.legume"
+        },
+        {
+            "value": "Chick pea",
+            "typeUri": "dmx.cooking.legume"
+        },
+        {
+            "value": "Pea",
+            "typeUri": "dmx.cooking.legume"
+        },
+        {
+            "value": "Red lentil",
+            "typeUri": "dmx.cooking.legume"
+        },
+        // Liquids
+        {
+            "value": "Water",
+            "typeUri": "dmx.cooking.liquid"
+        },
+       {
+            "value": "Cashew milk",
+            "typeUri": "dmx.cooking.liquid"
+        },
+        {
+            "value": "Chicken broth",
+            "typeUri": "dmx.cooking.liquid"
+        },
+        {
+            "value": "Gherkin water",
+            "typeUri": "dmx.cooking.liquid"
+        },
+        {
+            "value": "Lemon juice",
+            "typeUri": "dmx.cooking.liquid"
+        },
+        {
+            "value": "Lime juice",
+            "typeUri": "dmx.cooking.liquid"
+        },
+        {
+            "value": "Liquid smoke",
+            "typeUri": "dmx.cooking.liquid"
+        },
+        {
+            "value": "Non-alcoholic kvass",
+            "typeUri": "dmx.cooking.liquid"
+        },
+        {
+            "value": "Oat milk",
+            "typeUri": "dmx.cooking.liquid"
+        },
+        {
+            "value": "Vegetable broth",
+            "typeUri": "dmx.cooking.liquid"
+        },
+        {
+            "value": "White wine",
+            "typeUri": "dmx.cooking.liquid"
+        },
+        {
+            "value": "Red wine",
+            "typeUri": "dmx.cooking.liquid"
+        },
+        {
+            "value": "Beer",
+            "typeUri": "dmx.cooking.liquid"
+        },
+        {
+            "value": "Apple cider vinegar",
+            "typeUri": "dmx.cooking.liquid"
+        },
+        {
+            "value": "Balsamic vinegar",
+            "typeUri": "dmx.cooking.liquid"
+        },
+        {
+            "value": "Rice wine vinegar",
+            "typeUri": "dmx.cooking.liquid"
+        },
+        {
+            "value": "White wine vinegar",
+            "typeUri": "dmx.cooking.liquid"
+        },
+        // Meat
+        {
+            "value": "Pork",
+            "typeUri": "dmx.cooking.meat"
+        },
+        // Nuts and Co.
+        {
+            "value": "Almond",
+            "typeUri": "dmx.cooking.nut"
+        },
+        {
+            "value": "Cashew",
+            "typeUri": "dmx.cooking.nut"
+        },
+        {
+            "value": "Peanut",
+            "typeUri": "dmx.cooking.nut"
+        },
+        {
+            "value": "Pine nut",
+            "typeUri": "dmx.cooking.nut"
+        },
+        {
+            "value": "Walnut",
+            "typeUri": "dmx.cooking.nut"
+        },
+        // Oil
+        {
+            "value": "Canola oil",
+            "typeUri": "dmx.cooking.oil"
+        },
+        {
+            "value": "Coconut oil",
+            "typeUri": "dmx.cooking.oil"
+        },
+        {
+            "value": "Olive oil",
+            "typeUri": "dmx.cooking.oil"
+        },
+        {
+            "value": "Sesame oil",
+            "typeUri": "dmx.cooking.oil"
+        },
+        {
+            "value": "Walnut oil",
+            "typeUri": "dmx.cooking.oil"
+        },
+        // Sauces
+        {
+            "value": "Apple sauce",
+            "typeUri": "dmx.cooking.sauce"
+        },
+        {
+            "value": "Hoisin sauce",
+            "typeUri": "dmx.cooking.sauce"
+        },
+        {
+            "value": "Peanut butter",
+            "typeUri": "dmx.cooking.sauce"
+        },
+        {
+            "value": "Sieved tomatoes",
+            "typeUri": "dmx.cooking.sauce"
+        },
+        {
+            "value": "Sriracha",
+            "typeUri": "dmx.cooking.sauce"
+        },
+        {
+            "value": "Tamari",
+            "typeUri": "dmx.cooking.sauce"
+        },
+        {
+            "value": "Tomato paste",
+            "typeUri": "dmx.cooking.sauce"
+        },
+        // Soy products
+        {
+            "value": "Tofu",
+            "typeUri": "dmx.cooking.soy_product"
+        },
+        {
+            "value": "White Miso",
+            "typeUri": "dmx.cooking.soy_product"
+        },
+        {
+            "value": "Soy sauce",
+            "typeUri": "dmx.cooking.soy_product"
+        },
+        // Spices
+        {
+            "value": "Black pepper",
+            "typeUri": "dmx.cooking.spice"
+        },
+            {
+            "value": "White pepper",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
+            "value": "Cayenne pepper",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
+            "value": "Chili powder",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
+            "value": "Cinnamon",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
+            "value": "Cumin",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
+            "value": "Garlic",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
+            "value": "Ginger",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
+            "value": "Italian spices",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
+            "value": "Nutritional yeast",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
+            "value": "Pepper",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
+            "value": "Salt",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
+            "value": "Smoked salt",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
+            "value": "Smoked paprika",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
+            "value": "Vanilla extract",
+            "typeUri": "dmx.cooking.spice"
+        },
+        // Sweetener
+        {
+            "value": "Sugar",
+            "typeUri": "dmx.cooking.sweetener"
+        },
+        {
+            "value": "Cane sugar",
+            "typeUri": "dmx.cooking.sweetener"
+        },
+        {
+            "value": "Honey",
+            "typeUri": "dmx.cooking.sweetener"
+        },
+        {
+            "value": "Agave nectar",
+            "typeUri": "dmx.cooking.sweetener"
+        },
+        {
+            "value": "Maple syrup",
+            "typeUri": "dmx.cooking.sweetener"
+        },
+        // Vegetables
+        {
+            "value": "Zucchini",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Tomato",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Beetroot",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+                {
+            "value": "Bok choy",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Broccoli",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Cabbage",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Carrot",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Chicory",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Cucumber",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Kale",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Kimchi",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Onion",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Pumpkin",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Red chili pepper",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Red Onion",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Sauerkraut",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Scallion",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Spinach",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+    ]
+}
