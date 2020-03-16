@@ -301,6 +301,21 @@
             "uri": "dmx.cooking.kosher",
             "dataTypeUri": "dmx.core.boolean"
         },
+        {
+            "value": "Web address",
+            "uri": "dmx.cooking.web_address",
+            "dataTypeUri": "dmx.core.value",
+            "compDefs": [
+                {
+                    "childTypeUri": "dmx.base.url",
+                    "childCardinalityUri": "dmx.core.one",
+                },
+                {
+                    "childTypeUri": "dmx.datetime.date",
+                    "childCardinalityUri": "dmx.core.one"
+                }
+            ]
+        },
         // Composition Definition of "Dish"
         {
             "value": "Dish",
@@ -309,7 +324,8 @@
             "compDefs": [
                 {
                     "childTypeUri": "dmx.cooking.name_of_dish",
-                    "childCardinalityUri": "dmx.core.one"
+                    "childCardinalityUri": "dmx.core.one",
+                    "isIdentityAttr": true
                 },
                 {
                     "childTypeUri": "dmx.cooking.preparation_time",
@@ -347,13 +363,29 @@
     "assoc_types": [
         {
             "value": "Source",
-            "uri": "dmx.cooking.Source",
-            "dataTypeUri": "dmx.core.text"
+            "uri": "dmx.cooking.source",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        "dmx.webclient.color": "hsl(180, 50%, 53%)"
+                    }
+                }
+            ]
         },
         {
             "value": "Ingredient Amount",
             "uri": "dmx.cooking.ingredient_amount",
-            "dataTypeUri": "dmx.core.text"
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        "dmx.webclient.color": "hsl(210, 50%, 53%)"
+                    }
+                }
+            ]
         }
     ],
     "topics": [
