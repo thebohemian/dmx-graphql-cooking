@@ -23,8 +23,8 @@
                 {
                     "typeUri": "dmx.webclient.view_config",
                     "children": {
-                        // scale icon
-                        "dmx.webclient.icon": "\uf24e",
+                        // bucket icon
+                        "dmx.webclient.icon": "\uf171",
                         "dmx.webclient.add_to_create_menu": true
                     }
                 }
@@ -53,8 +53,8 @@
                 {
                     "typeUri": "dmx.webclient.view_config",
                     "children": {
-                        // fish icon
-                        "dmx.webclient.icon": "\uf578",
+                        // anchor icon
+                        "dmx.webclient.icon": "\uf13d",
                         "dmx.webclient.add_to_create_menu": true
                     }
                 }
@@ -69,7 +69,7 @@
                     "typeUri": "dmx.webclient.view_config",
                     "children": {
                         // apple icon
-                        "dmx.webclient.icon": "\uf5d1",
+                        "dmx.webclient.icon": "\uf179",
                         "dmx.webclient.add_to_create_menu": true
                     }
                 }
@@ -83,8 +83,8 @@
                 {
                     "typeUri": "dmx.webclient.view_config",
                     "children": {
-                        // icon
-                        "dmx.webclient.icon": "\uf4d8",
+                        // other leaf icon
+                        "dmx.webclient.icon": "\uf18c",
                         "dmx.webclient.add_to_create_menu": true
                     }
                 }
@@ -98,8 +98,8 @@
                 {
                     "typeUri": "dmx.webclient.view_config",
                     "children": {
-                        // balance-scale-left icon
-                        "dmx.webclient.icon": "\uf515",
+                        // balance-scale icon
+                        "dmx.webclient.icon": "\uf24e",
                         "dmx.webclient.add_to_create_menu": true
                     }
                 }
@@ -113,7 +113,7 @@
                 {
                     "typeUri": "dmx.webclient.view_config",
                     "children": {
-                        // drop icon
+                        // tint icon
                         "dmx.webclient.icon": "\uf043",
                         "dmx.webclient.add_to_create_menu": true
                     }
@@ -128,8 +128,8 @@
                 {
                     "typeUri": "dmx.webclient.view_config",
                     "children": {
-                        // drumstick-bite icon
-                        "dmx.webclient.icon": "\uf6d7",
+                        // paw icon
+                        "dmx.webclient.icon": "\uf1b0",
                         "dmx.webclient.add_to_create_menu": true
                     }
                 }
@@ -158,8 +158,8 @@
                 {
                     "typeUri": "dmx.webclient.view_config",
                     "children": {
-                        // oil-can icon
-                        "dmx.webclient.icon": "\uf613",
+                        // eyedropper icon
+                        "dmx.webclient.icon": "\uf1fb",
                         "dmx.webclient.add_to_create_menu": true
                     }
                 }
@@ -173,8 +173,8 @@
                 {
                     "typeUri": "dmx.webclient.view_config",
                     "children": {
-                        // crow icon
-                        "dmx.webclient.icon": "\uf520",
+                        // linux icon
+                        "dmx.webclient.icon": "\uf17c",
                         "dmx.webclient.add_to_create_menu": true
                     }
                 }
@@ -188,8 +188,8 @@
                 {
                     "typeUri": "dmx.webclient.view_config",
                     "children": {
-                        // oil-can icon
-                        "dmx.webclient.icon": "\uf485",
+                        // flask icon
+                        "dmx.webclient.icon": "\uf0c3",
                         "dmx.webclient.add_to_create_menu": true
                     }
                 }
@@ -203,8 +203,8 @@
                 {
                     "typeUri": "dmx.webclient.view_config",
                     "children": {
-                        // oil-can icon
-                        "dmx.webclient.icon": "\uf06c",
+                        // other leaf icon
+                        "dmx.webclient.icon": "\uf299",
                         "dmx.webclient.add_to_create_menu": true
                     }
                 }
@@ -218,8 +218,8 @@
                 {
                     "typeUri": "dmx.webclient.view_config",
                     "children": {
-                        // pepper-hot icon
-                        "dmx.webclient.icon": "\uf816",
+                        // fire icon
+                        "dmx.webclient.icon": "\uf06d",
                         "dmx.webclient.add_to_create_menu": true
                     }
                 }
@@ -233,8 +233,8 @@
                 {
                     "typeUri": "dmx.webclient.view_config",
                     "children": {
-                        // pepper-hot icon
-                        "dmx.webclient.icon": "\uf786",
+                        // certificate icon
+                        "dmx.webclient.icon": "\uf0a3",
                         "dmx.webclient.add_to_create_menu": true
                     }
                 }
@@ -248,8 +248,8 @@
                 {
                     "typeUri": "dmx.webclient.view_config",
                     "children": {
-                        // carrot icon
-                        "dmx.webclient.icon": "\uf787",
+                        // leaf icon
+                        "dmx.webclient.icon": "\uf06c",
                         "dmx.webclient.add_to_create_menu": true
                     }
                 }
@@ -353,7 +353,7 @@
                     "typeUri": "dmx.webclient.view_config",
                     "children": {
                         // cutlery icon
-                        "dmx.webclient.icon": "\uf2e7",
+                        "dmx.webclient.icon": "\uf0f5",
                         "dmx.webclient.add_to_create_menu": true
                     }
                 }
