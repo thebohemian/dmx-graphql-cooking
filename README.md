@@ -4,7 +4,13 @@ This plugin implements all topic types and association types needed for the cook
 
 ## Download
 
-(Upcoming...)
+DMX Cooking (upcoming...):
+
+https://download.dmx.systems/plugins/dmx-cooking/
+
+DMX Cooking (CI):
+
+https://download.dmx.systems/ci/dmx-cooking/dmx-cooking-latest.jar
 
 ## Usage
 
