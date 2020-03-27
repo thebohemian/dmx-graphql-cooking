@@ -1,3 +1,6 @@
+// This file implements autotyping:
+// Both association types provided by this plugin shall be automatically used when instances of certain topic types are linked to an instance of dish.
+
 package systems.dmx.cooking;
 
 import systems.dmx.core.model.AssocModel;
@@ -11,7 +14,7 @@ public class CookingPlugin extends PluginActivator implements PreCreateAssoc {
 
     @Override
     public void preCreateAssoc(AssocModel assoc) {
-        // Associations from instances of the following topic types to instances of "Dish" shall always be "Ingredient amount" associations.
+        // Associations from instances of the topic types listed below to instances of "Dish" shall always be "Ingredient amount" associations.
         // Baking ingredient <-> Dish
         DMXUtils.associationAutoTyping(assoc, "dmx.cooking.baking_ingredient", "dmx.cooking.dish",
             "dmx.cooking.ingredient_amount", "dmx.core.default", "dmx.core.default");
@@ -63,9 +66,7 @@ public class CookingPlugin extends PluginActivator implements PreCreateAssoc {
         // Vegetable <-> Dish
         DMXUtils.associationAutoTyping(assoc, "dmx.cooking.vegetable", "dmx.cooking.dish",
             "dmx.cooking.ingredient_amount", "dmx.core.default", "dmx.core.default");
-        //
-        // Associations from instances of "Web address" to instances of "Dish" shall always be "Source" associations.
-        //
+        // Associations from instances of "Bookmark" to instances of "Dish" shall always be Custom Association Types "Source".
         // Bookmark <-> Dish
         DMXUtils.associationAutoTyping(assoc, "dmx.bookmarks.bookmark", "dmx.cooking.dish",
             "dmx.cooking.source", "dmx.core.default", "dmx.core.default");
