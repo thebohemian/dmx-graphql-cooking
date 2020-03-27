@@ -1,0 +1,276 @@
+// This migration adds categories of cooking ingredients.
+// They will be filled with instances in the next migration.
+{
+    "topic_types": [
+        {
+            "value": "Baking ingredient",
+            "uri": "dmx.cooking.baking_ingredient",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // cake icon
+                        "dmx.webclient.icon": "\uf1fd",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Cereal product",
+            "uri": "dmx.cooking.cereal_product",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // bucket icon
+                        "dmx.webclient.icon": "\uf171",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Dairy product",
+            "uri": "dmx.cooking.dairy_product",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // beer icon
+                        "dmx.webclient.icon": "\uf0fc",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Drink",
+            "uri": "dmx.cooking.drink",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // fa glass icon
+                        "dmx.webclient.icon": "\uf000",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Fish",
+            "uri": "dmx.cooking.fish",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // anchor icon
+                        "dmx.webclient.icon": "\uf13d",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Fruit",
+            "uri": "dmx.cooking.fruit",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // apple icon
+                        "dmx.webclient.icon": "\uf179",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Herb",
+            "uri": "dmx.cooking.herb",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // other leaf icon
+                        "dmx.webclient.icon": "\uf18c",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Legume",
+            "uri": "dmx.cooking.legume",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // balance-scale icon
+                        "dmx.webclient.icon": "\uf24e",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Liquid",
+            "uri": "dmx.cooking.liquid",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // tint icon
+                        "dmx.webclient.icon": "\uf043",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Meat",
+            "uri": "dmx.cooking.meat",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // paw icon
+                        "dmx.webclient.icon": "\uf1b0",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Nut",
+            "uri": "dmx.cooking.nut",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // lemon icon
+                        "dmx.webclient.icon": "\uf094",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Oil",
+            "uri": "dmx.cooking.oil",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // eyedropper icon
+                        "dmx.webclient.icon": "\uf1fb",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Poultry",
+            "uri": "dmx.cooking.poultry",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // linux icon
+                        "dmx.webclient.icon": "\uf17c",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Sauce",
+            "uri": "dmx.cooking.sauce",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // flask icon
+                        "dmx.webclient.icon": "\uf0c3",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Soy product",
+            "uri": "dmx.cooking.soy_product",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // other leaf icon
+                        "dmx.webclient.icon": "\uf299",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Spice",
+            "uri": "dmx.cooking.spice",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // fire icon
+                        "dmx.webclient.icon": "\uf06d",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Sweetener",
+            "uri": "dmx.cooking.sweetener",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // certificate icon
+                        "dmx.webclient.icon": "\uf0a3",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
+            "value": "Vegetable",
+            "uri": "dmx.cooking.vegetable",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // leaf icon
+                        "dmx.webclient.icon": "\uf06c",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        }
+    ]
+}

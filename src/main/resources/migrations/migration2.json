@@ -1,0 +1,109 @@
+// This migration adds the topic types needed for the composite "Dish":
+// All properties of the dish are topic types themselves.
+// Below, the composite is put together from them.
+{
+    "topic_types": [
+        {
+            "value": "Name of Dish",
+            "uri": "dmx.cooking.name_of_dish",
+            "dataTypeUri": "dmx.core.text"
+        },
+        {
+            "value": "Description of Dish",
+            "uri": "dmx.cooking.description_of_dish",
+            "dataTypeUri": "dmx.core.text"
+        },
+        {
+            "value": "Preparation time in minutes",
+            "uri": "dmx.cooking.preparation_time",
+            "dataTypeUri": "dmx.core.number"
+        },
+        {
+            "value": "Cooking time in minutes",
+            "uri": "dmx.cooking.cooking_time",
+            "dataTypeUri": "dmx.core.number"
+        },
+        {
+            "value": "Gluten free",
+            "uri": "dmx.cooking.gluten_free",
+            "dataTypeUri": "dmx.core.boolean"
+        },
+        {
+            "value": "Lactose free",
+            "uri": "dmx.cooking.lactose_free",
+            "dataTypeUri": "dmx.core.boolean"
+        },
+        {
+            "value": "Vegetarian",
+            "uri": "dmx.cooking.vegetarian",
+            "dataTypeUri": "dmx.core.boolean"
+        },
+        {
+            "value": "Vegan",
+            "uri": "dmx.cooking.vegan",
+            "dataTypeUri": "dmx.core.boolean"
+        },
+        {
+            "value": "Halal",
+            "uri": "dmx.cooking.halal",
+            "dataTypeUri": "dmx.core.boolean"
+        },
+        {
+            "value": "Kosher",
+            "uri": "dmx.cooking.kosher",
+            "dataTypeUri": "dmx.core.boolean"
+        },
+        // Composition Definition of "Dish"
+        {
+            "value": "Dish",
+            "uri": "dmx.cooking.dish",
+            "dataTypeUri": "dmx.core.identity",
+            "compDefs": [
+                {
+                    "childTypeUri": "dmx.cooking.name_of_dish",
+                    "childCardinalityUri": "dmx.core.one",
+                    "isIdentityAttr": true
+                },
+                {
+                    "childTypeUri": "dmx.cooking.description_of_dish",
+                    "childCardinalityUri": "dmx.core.one"
+                },
+                {
+                    "childTypeUri": "dmx.bookmarks.bookmark",
+                    "childCardinalityUri": "dmx.core.one",
+                    "customAssocTypeUri": "dmx.cooking.source"
+                },
+                {
+                    "childTypeUri": "dmx.cooking.preparation_time",
+                    "childCardinalityUri": "dmx.core.one"
+                },
+                {
+                    "childTypeUri": "dmx.cooking.cooking_time",
+                    "childCardinalityUri": "dmx.core.one"
+                },
+                {
+                    "childTypeUri": "dmx.cooking.gluten_free",
+                    "childCardinalityUri": "dmx.core.one"
+                },
+                {
+                    "childTypeUri": "dmx.cooking.vegetarian",
+                    "childCardinalityUri": "dmx.core.one"
+                },
+                {
+                    "childTypeUri": "dmx.cooking.vegan",
+                    "childCardinalityUri": "dmx.core.one"
+                }
+            ],
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // cutlery icon
+                        "dmx.webclient.icon": "\uf0f5",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        }
+    ]
+}
