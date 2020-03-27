@@ -704,6 +704,14 @@
             "typeUri": "dmx.cooking.herb"
         },
         {
+            "value": "Dill",
+            "typeUri": "dmx.cooking.herb"
+        },
+        {
+            "value": "Marjoram",
+            "typeUri": "dmx.cooking.herb"
+        },
+        {
             "value": "Mint",
             "typeUri": "dmx.cooking.herb"
         },
@@ -908,11 +916,23 @@
         },
         // Spices
         {
+            "value": "Anise",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
             "value": "Black pepper",
             "typeUri": "dmx.cooking.spice"
         },
             {
             "value": "White pepper",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
+            "value": "Caper",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
+            "value": "Cardamom",
             "typeUri": "dmx.cooking.spice"
         },
         {
@@ -944,6 +964,10 @@
             "typeUri": "dmx.cooking.spice"
         },
         {
+            "value": "Jalapeño",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
             "value": "Lemongrass",
             "typeUri": "dmx.cooking.spice"
         },
@@ -957,6 +981,10 @@
         },
         {
             "value": "Salt",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
+            "value": "Sesame seed",
             "typeUri": "dmx.cooking.spice"
         },
         {
@@ -1035,6 +1063,10 @@
         },
         {
             "value": "Eggplant",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Fennel",
             "typeUri": "dmx.cooking.vegetable"
         },
         {
