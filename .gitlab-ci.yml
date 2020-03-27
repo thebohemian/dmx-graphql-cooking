@@ -1,4 +1,4 @@
-# 1) Every commit on master branch triggers a build
+# 1) Every commit on master branch or tagging triggers a build
 maven-build:
   stage: build
   script:
@@ -9,6 +9,7 @@ maven-build:
     name: ${CI_PROJECT_NAME}-${CI_COMMIT_SHORT_SHA}
   only:
     - master
+    - tags
 
 # 2) Copies SNAPSHOT builds on 'master' branch into download.dmx.systems/ci/ directory
 copy-to-ci:
