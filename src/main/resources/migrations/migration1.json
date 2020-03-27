@@ -46,6 +46,21 @@
             ]
         },
         {
+            "value": "Drink",
+            "uri": "dmx.cooking.drink",
+            "dataTypeUri": "dmx.core.text",
+            "viewConfigTopics": [
+                {
+                    "typeUri": "dmx.webclient.view_config",
+                    "children": {
+                        // fa glass icon
+                        "dmx.webclient.icon": "\uf000",
+                        "dmx.webclient.add_to_create_menu": true
+                    }
+                }
+            ]
+        },
+        {
             "value": "Fish",
             "uri": "dmx.cooking.fish",
             "dataTypeUri": "dmx.core.text",
@@ -464,6 +479,23 @@
             "value": "Cream",
             "typeUri": "dmx.cooking.dairy_product"
         },
+        // Drinks
+        {
+            "value": "Beer",
+            "typeUri": "dmx.cooking.drink"
+        },
+        {
+            "value": "Coffee",
+            "typeUri": "dmx.cooking.drink"
+        },
+        {
+            "value": "Red wine",
+            "typeUri": "dmx.cooking.drink"
+        },
+        {
+            "value": "White wine",
+            "typeUri": "dmx.cooking.drink"
+        },
         // Fish
         {
             "value": "Salmon",
@@ -475,7 +507,91 @@
             "typeUri": "dmx.cooking.fruit"
         },
         {
+            "value": "Apricot",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Avocado",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
             "value": "Banana",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Blackberry",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Blackcurrant",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Blood orange",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Blueberry",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Cherry",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Clementine",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Coconut",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Cranberry",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Date",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Elderberry",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Fig",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Galia melon",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Goji berry",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Gooseberry",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Guava",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Honeydew",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Jackfruit",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Kiwifruit",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Kumquat",
             "typeUri": "dmx.cooking.fruit"
         },
         {
@@ -483,7 +599,91 @@
             "typeUri": "dmx.cooking.fruit"
         },
         {
+            "value": "Lime",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Lychee",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Mandarine",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Mango",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Nectarine",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
             "value": "Orange",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Papaya",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Passionfruit",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Peach",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Pear",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Pineapple",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Plum",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Pomegranate",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Pomelo",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Prune",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Raisin",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Raspberry",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Redcurrant",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Strawberry",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Tamarind",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "Watermelon",
+            "typeUri": "dmx.cooking.fruit"
+        },
+        {
+            "value": "White currant",
             "typeUri": "dmx.cooking.fruit"
         },
         // Herbs
@@ -554,10 +754,6 @@
         },
         // Liquids
         {
-            "value": "Water",
-            "typeUri": "dmx.cooking.liquid"
-        },
-       {
             "value": "Cashew milk",
             "typeUri": "dmx.cooking.liquid"
         },
@@ -594,15 +790,7 @@
             "typeUri": "dmx.cooking.liquid"
         },
         {
-            "value": "White wine",
-            "typeUri": "dmx.cooking.liquid"
-        },
-        {
-            "value": "Red wine",
-            "typeUri": "dmx.cooking.liquid"
-        },
-        {
-            "value": "Beer",
+            "value": "Water",
             "typeUri": "dmx.cooking.liquid"
         },
         {
@@ -678,6 +866,10 @@
             "typeUri": "dmx.cooking.sauce"
         },
         {
+            "value": "Mustard",
+            "typeUri": "dmx.cooking.sauce"
+        },
+        {
             "value": "Peanut butter",
             "typeUri": "dmx.cooking.sauce"
         },
@@ -695,6 +887,10 @@
         },
         {
             "value": "Tomato paste",
+            "typeUri": "dmx.cooking.sauce"
+        },
+        {
+            "value": "Wasabi",
             "typeUri": "dmx.cooking.sauce"
         },
         // Soy products
@@ -748,6 +944,10 @@
             "typeUri": "dmx.cooking.spice"
         },
         {
+            "value": "Lemongrass",
+            "typeUri": "dmx.cooking.spice"
+        },
+        {
             "value": "Nutritional yeast",
             "typeUri": "dmx.cooking.spice"
         },
@@ -794,18 +994,14 @@
         },
         // Vegetables
         {
-            "value": "Zucchini",
-            "typeUri": "dmx.cooking.vegetable"
-        },
-        {
-            "value": "Tomato",
+            "value": "Asparagus",
             "typeUri": "dmx.cooking.vegetable"
         },
         {
             "value": "Beetroot",
             "typeUri": "dmx.cooking.vegetable"
         },
-                {
+        {
             "value": "Bok choy",
             "typeUri": "dmx.cooking.vegetable"
         },
@@ -822,11 +1018,27 @@
             "typeUri": "dmx.cooking.vegetable"
         },
         {
+            "value": "Cauliflower",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Celery",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
             "value": "Chicory",
             "typeUri": "dmx.cooking.vegetable"
         },
         {
             "value": "Cucumber",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Eggplant",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Horseradish",
             "typeUri": "dmx.cooking.vegetable"
         },
         {
@@ -838,11 +1050,31 @@
             "typeUri": "dmx.cooking.vegetable"
         },
         {
+            "value": "Leek",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Lettuce",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Nori",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
             "value": "Onion",
             "typeUri": "dmx.cooking.vegetable"
         },
         {
+            "value": "Potato",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
             "value": "Pumpkin",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Radish",
             "typeUri": "dmx.cooking.vegetable"
         },
         {
@@ -865,5 +1097,17 @@
             "value": "Spinach",
             "typeUri": "dmx.cooking.vegetable"
         },
+        {
+            "value": "Tomato",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Wakame",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+        {
+            "value": "Zucchini",
+            "typeUri": "dmx.cooking.vegetable"
+        }
     ]
 }
