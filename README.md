@@ -1,6 +1,6 @@
 # Data Model and Autotyping for the DMX cooking show case
 
-This plugin implements all topic types and association types needed for the cooking showcase used on the [DMX Demo Server](https://demo.dmx.systems) and in the webcast and in the [DMX Modeling Tutorial](https://vimeo.com/393512831)".
+This plugin implements all topic types and association types needed for the cooking showcase used on the [DMX Demo Server](https://demo.dmx.systems) and in the webcast and in the [DMX Modeling Tutorial](https://vimeo.com/393512831)" (though slightly different here). It also provides autotyping for associations related to dish instances.
 
 ## Download
 
