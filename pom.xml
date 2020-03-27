@@ -5,6 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <name>DMX Cooking</name>
+    <!-- The plugin name is concatinated from the groupId and the artifactId.
+         Exception: "systems.dmx + dmx-cooking" makes systems.dmx.cooking. -->
     <groupId>systems.dmx</groupId>
     <artifactId>dmx-cooking</artifactId>
     <version>0.1.0-SNAPSHOT</version>
@@ -16,6 +18,8 @@
         <version>5.0-beta-7-SNAPSHOT</version>
     </parent>
 
+    <!-- The bundle activator is needed to call the CookingPlugin.java file (for autotyping).
+         It is not needed in plugins that only declare a data model. -->
     <build>
         <plugins>
             <plugin>
