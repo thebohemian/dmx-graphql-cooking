@@ -66,8 +66,8 @@ public class CookingPlugin extends PluginActivator implements PreCreateAssoc {
         //
         // Associations from instances of "Web address" to instances of "Dish" shall always be "Source" associations.
         //
-        // Web address <-> Dish
-        DMXUtils.associationAutoTyping(assoc, "dmx.cooking.web_address", "dmx.cooking.dish",
+        // Bookmark <-> Dish
+        DMXUtils.associationAutoTyping(assoc, "dmx.bookmarks.bookmark", "dmx.cooking.dish",
             "dmx.cooking.source", "dmx.core.default", "dmx.core.default");
     }
 }
