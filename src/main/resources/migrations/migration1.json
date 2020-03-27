@@ -10,7 +10,7 @@
                 {
                     "typeUri": "dmx.webclient.view_config",
                     "children": {
-                        "dmx.webclient.color": "hsl(180, 50%, 53%)"
+                        "dmx.webclient.color": "#3D4065"
                     }
                 }
             ]
@@ -23,7 +23,7 @@
                 {
                     "typeUri": "dmx.webclient.view_config",
                     "children": {
-                        "dmx.webclient.color": "hsl(210, 50%, 53%)"
+                        "dmx.webclient.color": "#B7D9CB"
                     }
                 }
             ]
