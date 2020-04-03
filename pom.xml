@@ -15,7 +15,7 @@
     <parent>
         <groupId>systems.dmx</groupId>
         <artifactId>dmx-plugin</artifactId>
-        <version>5.0-beta-7-SNAPSHOT</version>
+        <version>5.0-beta-7</version>
     </parent>
 
     <!-- The bundle activator is needed to call the CookingPlugin.java file (for autotyping).

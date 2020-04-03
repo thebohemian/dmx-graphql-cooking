@@ -26,3 +26,11 @@ All third party components incorporated into the DMX Cooking Software are licens
 ## Credits
 
 Based on Jörg Richter's [DMX Plugin Template](https://git.dmx.systems/dmx-plugins/dmx-plugin-template).
+
+## Version History
+
+**0.1** -- Apr 03, 2020
+
+* first release
+* Requires DMX 5.0-beta-7
+
