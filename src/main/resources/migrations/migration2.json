@@ -57,7 +57,7 @@
         {
             "value": "Dish",
             "uri": "dmx.cooking.dish",
-            "dataTypeUri": "dmx.core.identity",
+            "dataTypeUri": "dmx.core.entity",
             "compDefs": [
                 {
                     "childTypeUri": "dmx.cooking.name_of_dish",
