@@ -1,0 +1,12 @@
+// This migration adds another topic type that shall be part of the composite "Dish":
+// The composite is updated in an imperative migration:
+// ./dmx-cooking/src/main/java/systems/dmx/cooking/migrations/Migration7.java
+{
+    "topic_types": [
+        {
+            "value": "Annotation",
+            "uri": "dmx.cooking.annotation",
+            "dataTypeUri": "dmx.core.html"
+        }
+    ]
+}
