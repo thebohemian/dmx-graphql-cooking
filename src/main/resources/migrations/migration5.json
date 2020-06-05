@@ -1,0 +1,44 @@
+// This migration adds more topics / instances to the DMX database.
+// The plugin shall provide cooking ingredients so they don't have to filled in manually.
+{
+    "topics": [
+        // Baking ingredients
+        {
+            "value": "Margarine",
+            "typeUri": "dmx.cooking.baking_ingredient"
+        },
+        {
+            "value": "Yeast",
+            "typeUri": "dmx.cooking.baking_ingredient"
+        },
+        // cereal products
+        {
+            "value": "Flour",
+            "typeUri": "dmx.cooking.cereal_product"
+        },
+        {
+            "value": "Food Starch",
+            "typeUri": "dmx.cooking.cereal_product"
+        },
+        // Herbs
+        {
+            "value": "Tarragon",
+            "typeUri": "dmx.cooking.herb"
+        },
+        // Soy products
+        {
+            "value": "Soy Cream",
+            "typeUri": "dmx.cooking.soy_product"
+        },
+        // Spices
+        {
+            "value": "Black Salt",
+            "typeUri": "dmx.cooking.spice"
+        },
+        // Vegetables
+        {
+            "value": "Cherry Tomato",
+            "typeUri": "dmx.cooking.vegetable"
+        },
+    ]
+}
