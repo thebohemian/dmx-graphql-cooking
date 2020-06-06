@@ -4,7 +4,7 @@ This plugin implements all topic types and association types needed for the cook
 
 ## Download
 
-DMX Cooking (upcoming...):
+DMX Cooking:
 
 https://download.dmx.systems/plugins/dmx-cooking/
 
@@ -12,9 +12,21 @@ DMX Cooking (CI):
 
 https://download.dmx.systems/ci/dmx-cooking/dmx-cooking-latest.jar
 
+## Dependency
+
+DMX Cooking depends on the DMX Biblio plugin:
+
+DMX Biblio:
+
+https://download.dmx.systems/plugins/dmx-biblio/ (Upcoming...)
+
+DMX Biblio (CI):
+
+https://download.dmx.systems/ci/dmx-biblio/dmx-biblio-latest.jar (Upcoming...)
+
 ## Usage
 
-Download the .jar file to the bunde-deploy folder of your DMX instance (also see the section on [Plugin Installation](https://dmx.readthedocs.io/en/latest/admin.html#plugin-installation) in the DMX Admin Documentation).
+Download the .jar file of dmx-biblio and dmx-cooking to the bunde-deploy folder of your DMX instance (also see the section on [Plugin Installation](https://dmx.readthedocs.io/en/latest/admin.html#plugin-installation) in the DMX Admin Documentation).
 
 In DMX create an instance of the topic type "Dish", search for ingredients and create associations between them and the dish. The associations are automatically assigned the association type "Ingredient amount". Edit the associations to specify the quantities.
 
