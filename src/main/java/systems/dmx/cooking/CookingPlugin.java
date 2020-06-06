@@ -70,5 +70,9 @@ public class CookingPlugin extends PluginActivator implements PreCreateAssoc {
         // Bookmark <-> Dish
         DMXUtils.assocAutoTyping(assoc, "dmx.bookmarks.bookmark", "dmx.cooking.dish",
             "dmx.cooking.source", "dmx.core.default", "dmx.core.default");
+        // Associations from instances of "Book" to instances of "Dish" shall always be Custom Association Types "Source".
+        // Book <-> Dish
+        DMXUtils.assocAutoTyping(assoc, "dmx.biblio.monograph", "dmx.cooking.dish",
+            "dmx.cooking.source", "dmx.core.default", "dmx.core.default");
     }
 }
