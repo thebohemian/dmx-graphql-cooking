@@ -9,13 +9,13 @@
          Exception: "systems.dmx + dmx-cooking" makes systems.dmx.cooking. -->
     <groupId>systems.dmx</groupId>
     <artifactId>dmx-cooking</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.2</version>
     <packaging>bundle</packaging>
 
     <parent>
         <groupId>systems.dmx</groupId>
         <artifactId>dmx-plugin</artifactId>
-        <version>5.0-SNAPSHOT</version>
+        <version>5.0</version>
     </parent>
 
     <!-- The bundle activator is needed to call the CookingPlugin.java file (for autotyping).

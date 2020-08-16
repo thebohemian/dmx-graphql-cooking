@@ -10,7 +10,6 @@ public class Migration8 extends Migration {
 	public void run() {
 		//
 		TopicType type = dmx.getTopicType("dmx.cooking.dish");
-		//TopicType book = dmx.getTopicType("dmx.biblio.monograph");
 		/* Add "Book" from biblio plugin as a possible source to the "Dish" composite.
 		In the form generator, list it before the annotation.*/
 		type.addCompDefBefore(mf.newCompDefModel(

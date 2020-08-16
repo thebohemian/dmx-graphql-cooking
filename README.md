@@ -18,11 +18,11 @@ DMX Cooking depends on the DMX Biblio plugin:
 
 DMX Biblio:
 
-https://download.dmx.systems/plugins/dmx-biblio/ (Upcoming...)
+https://download.dmx.systems/plugins/dmx-biblio/
 
 DMX Biblio (CI):
 
-https://download.dmx.systems/ci/dmx-biblio/dmx-biblio-latest.jar (Upcoming...)
+https://download.dmx.systems/ci/dmx-biblio/dmx-biblio-latest.jar
 
 ## Usage
 
@@ -41,11 +41,11 @@ Based on Jörg Richter's [DMX Plugin Template](https://git.dmx.systems/dmx-plugi
 
 ## Version History
 
-**0.2-SNAPSHOT** -- Jun 7, 2020
+**0.2** -- Aug 16, 2020
 
 * dependency to dmx-biblio plugin
 * Books are now supported sources
-* Adapted for DMX 5.0-SNAPSHOT
+* Adapted for DMX 5.0
 
 **0.1** -- Apr 03, 2020
 
