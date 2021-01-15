@@ -41,6 +41,10 @@ Based on Jörg Richter's [DMX Plugin Template](https://git.dmx.systems/dmx-plugi
 
 ## Version History
 
+**0.3** -- Jan 15, 2021
+
+* Compatible with DMX 5.1
+
 **0.2** -- Aug 16, 2020
 
 * dependency to dmx-biblio plugin
