@@ -1,4 +1,5 @@
 .idea/
+deploy/instance/
 target/
 src/main/resources/web/
 node_modules/

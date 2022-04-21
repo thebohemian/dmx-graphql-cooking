@@ -16,6 +16,7 @@
         <kotlin.compiler.incremental>false</kotlin.compiler.incremental>
         <kotlinx.coroutines.version>1.6.1</kotlinx.coroutines.version>
         <maven-bundle-plugin.version>4.1.0</maven-bundle-plugin.version>
+        <dmx.deploy.dir>./deploy/instance/dev/bundle-deploy</dmx.deploy.dir>
     </properties>
 
     <parent>
