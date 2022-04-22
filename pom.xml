@@ -15,6 +15,7 @@
         <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
         <kotlin.compiler.incremental>false</kotlin.compiler.incremental>
         <kotlinx.coroutines.version>1.6.1</kotlinx.coroutines.version>
+        <graphql-kotlin.version>5.3.2</graphql-kotlin.version>
         <maven-bundle-plugin.version>4.1.0</maven-bundle-plugin.version>
         <dmx.deploy.dir>./deploy/instance/dev/bundle-deploy</dmx.deploy.dir>
     </properties>
@@ -50,12 +51,41 @@
             <version>${kotlin.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.expediagroup</groupId>
+            <artifactId>graphql-kotlin-server</artifactId>
+            <version>${graphql-kotlin.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jetbrains.kotlin</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
     </dependencies>
 
     <!-- The bundle activator is needed to call the CookingPlugin.kt file (for autotyping).
          It is not needed in plugins that only declare a data model. -->
     <build>
         <plugins>
+            <plugin>
+                <groupId>com.expediagroup</groupId>
+                <artifactId>graphql-kotlin-maven-plugin</artifactId>
+                <version>${graphql-kotlin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate-sdl</goal>
+                        </goals>
+                        <configuration>
+                            <packages>
+                                <package>systems.dmx.cooking.schema</package>
+                            </packages>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>

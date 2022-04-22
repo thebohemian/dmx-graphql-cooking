@@ -2,12 +2,41 @@
 // Both association types provided by this plugin shall be automatically used when instances of certain topic types are linked to an instance of dish.
 package systems.dmx.cooking
 
+import com.expediagroup.graphql.server.execution.GraphQLServer
+import com.expediagroup.graphql.server.types.GraphQLResponse
+import createRequestHandler
+import kotlinx.coroutines.runBlocking
+import systems.dmx.cooking.graphql.CookingContextFactory
+import systems.dmx.cooking.graphql.CookingContextParser
 import systems.dmx.core.model.AssocModel
 import systems.dmx.core.osgi.PluginActivator
 import systems.dmx.core.service.event.PreCreateAssoc
 import systems.dmx.core.util.DMXUtils
+import javax.ws.rs.Consumes
+import javax.ws.rs.POST
+import javax.ws.rs.Path
+import javax.ws.rs.Produces
+import javax.ws.rs.core.MediaType
 
+@Path(CookingPlugin.BACKEND_PREFIX)
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 class CookingPlugin : PluginActivator(), PreCreateAssoc {
+
+    private val server = GraphQLServer(
+            requestParser = CookingContextParser(),
+            requestHandler = createRequestHandler(),
+            contextFactory = CookingContextFactory(dmx))
+
+    @POST
+    @Path("/graphql")
+    fun execute(body: JSONWrapper): Any? {
+        val response = runBlocking {
+            server.execute(body.toJSON())
+        }
+        return (response as? GraphQLResponse<*>)?.data
+    }
+
     override fun preCreateAssoc(assoc: AssocModel) {
         // Associations from instances of the topic types listed below to instances of "Dish" shall always be "Ingredient amount" associations.
         // Baking ingredient <-> Dish
@@ -69,5 +98,9 @@ class CookingPlugin : PluginActivator(), PreCreateAssoc {
         // Book <-> Dish
         DMXUtils.assocAutoTyping(assoc, "dmx.biblio.monograph", "dmx.cooking.dish",
                 "dmx.cooking.source", "dmx.core.default", "dmx.core.default")
+    }
+
+    companion object {
+        const val BACKEND_PREFIX = "cooking-backend"
     }
 }
