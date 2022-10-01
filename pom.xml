@@ -11,12 +11,12 @@
     <packaging>bundle</packaging>
 
     <properties>
-        <kotlin.version>1.6.21</kotlin.version>
+        <kotlin.version>1.7.20</kotlin.version>
         <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
         <kotlin.compiler.incremental>false</kotlin.compiler.incremental>
-        <kotlinx.coroutines.version>1.6.1</kotlinx.coroutines.version>
-        <graphql-kotlin.version>5.3.2</graphql-kotlin.version>
-        <maven-bundle-plugin.version>4.1.0</maven-bundle-plugin.version>
+        <kotlinx.coroutines.version>1.6.4</kotlinx.coroutines.version>
+        <graphql-kotlin.version>6.2.5</graphql-kotlin.version>
+        <maven-bundle-plugin.version>5.1.8</maven-bundle-plugin.version>
         <dmx.deploy.dir>./deploy/instance/dev/bundle-deploy</dmx.deploy.dir>
         <dmx.version>5.2</dmx.version>
     </properties>
@@ -160,6 +160,12 @@
                 <configuration>
                     <instructions>
                         <Import-Package>
+                            !android.os,
+                            !org.antlr.v4.gui,
+                            !org.apache.openejb.*,
+                            javax.annotation.meta;resolution:=optional,
+                            kotlin.internal.jdk7.*;resolution:=optional,
+                            kotlin.internal.jdk8.*;resolution:=optional,
                             org.checkerframework.*;resolution:=optional,
                             com.google.errorprone.annotations*;resolution:=optional,
                             sun.security.util;resolution:=optional,

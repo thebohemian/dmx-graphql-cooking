@@ -11,10 +11,9 @@ class CookingContextFactory(
     private val wss: WorkspacesService
 ) : GraphQLContextFactory<GraphQLContext, JSONObject> {
 
-    override suspend fun generateContextMap(request: JSONObject): Map<*, Any>? = mapOf(
+    override suspend fun generateContextMap(request: JSONObject): Map<*, Any> = mapOf(
         "dmx" to dmx,
         "wss" to wss
     )
 
-    override suspend fun generateContext(request: JSONObject) = null
 }
