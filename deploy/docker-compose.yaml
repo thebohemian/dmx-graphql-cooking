@@ -17,6 +17,7 @@ services:
       - ./instance/dev/db:/opt/dmx/dmx-db
       - ./instance/dev/filedir:/opt/dmx/dmx-filedir
       - ./instance/dev/bundle-deploy:/opt/dmx/bundle-deploy
+      - ./dmx/dev/config.properties.d:/opt/dmx/conf.d/config.properties.d:ro
       - ./dmx/dev/plugins:/opt/dmx/plugins:ro
     labels:
       traefik.http.services.dmx.loadbalancer.server.port: 8080

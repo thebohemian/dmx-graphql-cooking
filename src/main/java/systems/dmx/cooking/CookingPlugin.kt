@@ -2,39 +2,72 @@
 // Both association types provided by this plugin shall be automatically used when instances of certain topic types are linked to an instance of dish.
 package systems.dmx.cooking
 
+import com.expediagroup.graphql.generator.extensions.print
 import com.expediagroup.graphql.server.execution.GraphQLServer
 import com.expediagroup.graphql.server.types.GraphQLResponse
-import createRequestHandler
+import com.fasterxml.jackson.databind.ObjectMapper
+import graphql.schema.GraphQLSchema
 import kotlinx.coroutines.runBlocking
+import org.codehaus.jettison.json.JSONObject
 import systems.dmx.cooking.graphql.CookingContextFactory
-import systems.dmx.cooking.graphql.CookingContextParser
+import systems.dmx.cooking.graphql.CookingRequestParser
+import systems.dmx.cooking.graphql.createRequestHandler
+import systems.dmx.cooking.graphql.generateSchema
 import systems.dmx.core.model.AssocModel
 import systems.dmx.core.osgi.PluginActivator
+import systems.dmx.core.service.Inject
 import systems.dmx.core.service.event.PreCreateAssoc
 import systems.dmx.core.util.DMXUtils
-import javax.ws.rs.Consumes
-import javax.ws.rs.POST
-import javax.ws.rs.Path
-import javax.ws.rs.Produces
+import systems.dmx.workspaces.WorkspacesService
+import java.net.URI
+import javax.ws.rs.*
 import javax.ws.rs.core.MediaType
+import javax.ws.rs.core.Response
 
 @Path(CookingPlugin.BACKEND_PREFIX)
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
 class CookingPlugin : PluginActivator(), PreCreateAssoc {
 
-    private val server = GraphQLServer(
-            requestParser = CookingContextParser(),
-            requestHandler = createRequestHandler(),
-            contextFactory = CookingContextFactory(dmx))
+    @Inject
+    private lateinit var wss: WorkspacesService
+
+    private lateinit var schema: GraphQLSchema
+
+    private lateinit var server: GraphQLServer<JSONObject>
+
+    private val objectMapper = ObjectMapper()
+
+    override fun init() {
+        schema = generateSchema()
+        server = GraphQLServer(
+            requestParser = CookingRequestParser(objectMapper),
+            requestHandler = createRequestHandler(schema),
+            contextFactory = CookingContextFactory(dmx, wss))
+    }
 
     @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/graphql")
-    fun execute(body: JSONWrapper): Any? {
-        val response = runBlocking {
-            server.execute(body.toJSON())
+    fun executeGraphQL(body: JSONWrapper): String {
+        // Execute the query against the schema
+        return runBlocking {
+            server.execute(body.toJSON())?.let { result ->
+                objectMapper.writeValueAsString(result)
+            } ?: throw WebApplicationException(Response.Status.BAD_REQUEST)
         }
-        return (response as? GraphQLResponse<*>)?.data
+    }
+
+    @GET
+    @Path("/sdl")
+    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    fun getGraphQLSchema(): String {
+        return schema.print()
+    }
+
+    @GET
+    @Path("/graphiql")
+    fun getGraphiQL(): Response {
+        return Response.temporaryRedirect(URI("/com.github.thebohemian.dmx-graphql-cooking/graphiql-playground.html")).build()
     }
 
     override fun preCreateAssoc(assoc: AssocModel) {

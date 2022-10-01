@@ -2,6 +2,8 @@ package systems.dmx.cooking.schema
 
 import com.expediagroup.graphql.generator.annotations.GraphQLDescription
 import com.expediagroup.graphql.server.operations.Query
+import graphql.schema.DataFetchingEnvironment
+import systems.dmx.core.service.CoreService
 
 /**
  * Provide search and query options for baking ingredients.
@@ -13,4 +15,13 @@ class BakingIngredientService : Query {
 
     fun hello() = "World!"
 
+    fun getById(dfe: DataFetchingEnvironment, id: String): String =
+        dmx(dfe).getTopic(id.toLong()).simpleValue.toString()
+
+    fun getAll(dfe: DataFetchingEnvironment): List<String> =
+        dmx(dfe).getTopicsByType("dmx.cooking.baking_ingredient").map {
+            it.simpleValue.toString()
+        }
+
+    private fun dmx(dfe: DataFetchingEnvironment) = dfe.graphQlContext.get<CoreService>("dmx")
 }

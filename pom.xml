@@ -18,6 +18,7 @@
         <graphql-kotlin.version>5.3.2</graphql-kotlin.version>
         <maven-bundle-plugin.version>4.1.0</maven-bundle-plugin.version>
         <dmx.deploy.dir>./deploy/instance/dev/bundle-deploy</dmx.deploy.dir>
+        <dmx.version>5.2</dmx.version>
     </properties>
 
     <parent>
@@ -28,11 +29,25 @@
 
     <dependencies>
         <dependency>
+            <groupId>systems.dmx</groupId>
+            <artifactId>dmx-core</artifactId>
+            <version>${dmx.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>systems.dmx</groupId>
+            <artifactId>dmx-workspaces</artifactId>
+            <version>${dmx.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib-jdk8</artifactId>
             <version>${kotlin.version}</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-junit5</artifactId>
@@ -61,6 +76,58 @@
                     <artifactId>*</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.expediagroup</groupId>
+            <artifactId>graphql-kotlin-schema-generator</artifactId>
+            <version>${graphql-kotlin.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jetbrains.kotlin</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-core-jvm</artifactId>
+            <version>${kotlinx.coroutines.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jetbrains.kotlin</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-kotlin</artifactId>
+            <version>2.13.4</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jetbrains.kotlin</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.errorprone</groupId>
+            <artifactId>error_prone_annotations</artifactId>
+            <version>2.13.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.checkerframework</groupId>
+            <artifactId>checker-qual</artifactId>
+            <version>3.25.0</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
@@ -92,12 +159,24 @@
                 <version>${maven-bundle-plugin.version}</version>
                 <configuration>
                     <instructions>
+                        <Import-Package>
+                            org.checkerframework.*;resolution:=optional,
+                            com.google.errorprone.annotations*;resolution:=optional,
+                            sun.security.util;resolution:=optional,
+                            sun.misc;resolution:=optional,
+                            *
+                        </Import-Package>
+                        <Export-Package>systems.dmx.cooking</Export-Package>
+                        <Private-Package>systems.dmx.cooking.*</Private-Package>
                         <Bundle-Activator>systems.dmx.cooking.CookingPlugin</Bundle-Activator>
                         <!-- Automatically adds compile and runtime dependencies and places them in "dependencies"
                          folder inside the jar -->
-                        <Embed-Dependency>*;scope=compile|runtime;inline=false;artifactId=!dmx-core|stax-api</Embed-Dependency>
+                        <Embed-Dependency>*;scope=compile|runtime;inline=false;artifactId=!dmx-*|stax-api</Embed-Dependency>
                         <Embed-Directory>dependencies</Embed-Directory>
                         <Embed-Transitive>true</Embed-Transitive>
+                        <!-- Important to not create a spurious Java9 dependency -->
+                        <_noee>true</_noee>
+                        <_split-package>error</_split-package>
                     </instructions>
                 </configuration>
             </plugin>
