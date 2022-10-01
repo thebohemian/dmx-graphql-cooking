@@ -1,4 +1,4 @@
 ### DMX Configuration for Docker Environments ###
 
 ### Allow GraphQL usage
-dmx.security.anonymous_write_allowed = /cooking-backend/graphql
+dmx.security.anonymous_write_allowed = ALL
