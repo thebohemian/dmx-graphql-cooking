@@ -8,7 +8,7 @@ import systems.dmx.core.service.CoreService
 /**
  * Provide search and query options for baking ingredients.
  */
-class BakingIngredientService : Query {
+class DemoService : Query {
 
     @GraphQLDescription("Just return a very secure random number")
     fun getSecureRandomNumber(): Int = 4
@@ -22,6 +22,8 @@ class BakingIngredientService : Query {
         dmx(dfe).getTopicsByType("dmx.cooking.baking_ingredient").map {
             it.simpleValue.toString()
         }
+
+    fun cooking() = CookingQuery()
 
     private fun dmx(dfe: DataFetchingEnvironment) = dfe.graphQlContext.get<CoreService>("dmx")
 }
