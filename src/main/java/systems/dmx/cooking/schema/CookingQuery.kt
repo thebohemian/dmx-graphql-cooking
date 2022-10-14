@@ -4,6 +4,8 @@ import com.expediagroup.graphql.generator.annotations.GraphQLIgnore
 import com.expediagroup.graphql.generator.scalars.ID
 import com.expediagroup.graphql.server.operations.Query
 import graphql.schema.DataFetchingEnvironment
+import systems.dmx.cooking.schema.CookingQuery.Companion.BAKING_INGREDIENT
+import systems.dmx.cooking.schema.CookingQuery.Companion.DISH
 import systems.dmx.core.Topic
 import systems.dmx.core.service.CoreService
 
@@ -63,6 +65,9 @@ abstract class DMXType {
 
 data class BakingIngredient(override val topic: Topic) : DMXType() {
     fun name() = topic.simpleValue.toString()
+
+    fun usedInDishes() = topic.getRelatedTopics(
+        "dmx.cooking.ingredient_amount", null, null, DISH).map (::Dish)
 }
 
 data class CerealProduct(override val topic: Topic) : DMXType() {
@@ -74,6 +79,9 @@ data class Dish(override val topic: Topic) : DMXType() {
     fun description(): String? = childTopics.getString("dmx.cooking.description_of_dish", null)
     fun bookmark() = topic.childTopics.getTopicOrNull("dmx.bookmarks.bookmark#dmx.cooking.source")?.let { Bookmark(it) }
     fun preparationTime() = runCatching { topic.childTopics.getInt("dmx.cooking.preparation_time") }.getOrNull()
+
+    fun ingredients() = topic.getRelatedTopics(
+        "dmx.cooking.ingredient_amount", null, null, BAKING_INGREDIENT).map (::BakingIngredient)
 }
 
 data class Bookmark(override val topic: Topic) : DMXType() {

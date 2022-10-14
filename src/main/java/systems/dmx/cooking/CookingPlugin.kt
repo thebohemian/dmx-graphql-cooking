@@ -9,10 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import graphql.schema.GraphQLSchema
 import kotlinx.coroutines.runBlocking
 import org.codehaus.jettison.json.JSONObject
-import systems.dmx.cooking.graphql.CookingContextFactory
-import systems.dmx.cooking.graphql.CookingRequestParser
-import systems.dmx.cooking.graphql.createRequestHandler
-import systems.dmx.cooking.graphql.generateSchema
+import systems.dmx.cooking.graphql.*
 import systems.dmx.core.model.AssocModel
 import systems.dmx.core.osgi.PluginActivator
 import systems.dmx.core.service.Inject
@@ -33,14 +30,22 @@ class CookingPlugin : PluginActivator(), PreCreateAssoc {
     private lateinit var schema: GraphQLSchema
 
     private lateinit var server: GraphQLServer<JSONObject>
+    private lateinit var dmxServer: GraphQLServer<JSONObject>
 
     private val objectMapper = ObjectMapper()
 
     override fun init() {
+        //schema = generateDMXSchema(dmx)
         schema = generateSchema()
         server = GraphQLServer(
             requestParser = CookingRequestParser(objectMapper),
             requestHandler = createRequestHandler(schema),
+            contextFactory = CookingContextFactory(dmx, wss))
+
+        val dmxSchema = generateDMXSchema(dmx)
+        dmxServer = GraphQLServer(
+            requestParser = CookingRequestParser(objectMapper),
+            requestHandler = createRequestHandler(dmxSchema),
             contextFactory = CookingContextFactory(dmx, wss))
     }
 
@@ -68,6 +73,25 @@ class CookingPlugin : PluginActivator(), PreCreateAssoc {
     @Path("/graphiql")
     fun getGraphiQL(): Response {
         return Response.temporaryRedirect(URI("/com.github.thebohemian.dmx-graphql-cooking/graphiql-playground.html")).build()
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/dmx-graphql")
+    fun executeDmxGraphQL(body: JSONWrapper): String {
+        // Execute the query against the schema
+        return runBlocking {
+            dmxServer.execute(body.toJSON())?.let { result ->
+                objectMapper.writeValueAsString(result)
+            } ?: throw WebApplicationException(Response.Status.BAD_REQUEST)
+        }
+    }
+
+    @GET
+    @Path("/dmx-graphiql")
+    fun getDmxGraphiQL(): Response {
+        return Response.temporaryRedirect(URI("/com.github.thebohemian.dmx-graphql-cooking/dmx-graphiql-playground.html")).build()
     }
 
     override fun preCreateAssoc(assoc: AssocModel) {

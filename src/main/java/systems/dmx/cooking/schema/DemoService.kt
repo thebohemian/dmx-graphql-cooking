@@ -1,6 +1,7 @@
 package systems.dmx.cooking.schema
 
 import com.expediagroup.graphql.generator.annotations.GraphQLDescription
+import com.expediagroup.graphql.server.operations.Mutation
 import com.expediagroup.graphql.server.operations.Query
 import graphql.schema.DataFetchingEnvironment
 import systems.dmx.core.service.CoreService
@@ -24,6 +25,8 @@ class DemoService : Query {
         }
 
     fun cooking() = CookingQuery()
+
+    fun dmx() = DMXQuery()
 
     private fun dmx(dfe: DataFetchingEnvironment) = dfe.graphQlContext.get<CoreService>("dmx")
 }
