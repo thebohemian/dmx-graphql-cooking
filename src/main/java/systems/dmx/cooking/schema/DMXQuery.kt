@@ -4,6 +4,7 @@ import graphql.schema.DataFetchingEnvironment
 import systems.dmx.core.CompDef
 import systems.dmx.core.Topic
 import systems.dmx.core.TopicType
+import systems.dmx.core.model.SimpleValue
 import systems.dmx.core.service.CoreService
 import systems.dmx.core.DMXType as CoreDMXType
 
@@ -45,5 +46,15 @@ class CompositionDefinition(private val compDef: CompDef) {
 class DMXTopic(private val topic: Topic) {
     fun id() = topic.id.toString()
     fun uri() = topic.uri
-    fun simpleValue() = topic.simpleValue.toString()
+    fun typeUri() = topic.typeUri
+    fun topicType() = DMXTopicType(topic.type)
+    fun simpleValue() = DMXSimpleValue(topic.simpleValue)
+}
+
+class DMXSimpleValue(private val sv: SimpleValue) {
+    fun boolean() = sv.booleanValue()
+    fun int() = sv.intValue()
+    fun double() = sv.doubleValue()
+    fun string() = sv.toString()
+    //fun long() = sv.longValue().toInt() kotlin.Long
 }

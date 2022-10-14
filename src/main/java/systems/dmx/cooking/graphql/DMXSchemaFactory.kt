@@ -2,19 +2,23 @@ package systems.dmx.cooking.graphql
 
 import graphql.Scalars.*
 import graphql.schema.*
+import systems.dmx.core.CompDef
 import systems.dmx.core.Topic
 import systems.dmx.core.TopicType
+import systems.dmx.core.model.SimpleValue
 import systems.dmx.core.service.CoreService
+import java.util.logging.Logger
+import systems.dmx.core.Constants as DmxCoreConstants
 
 const val QUERY_TYPE_NAME = "Query"
 
-private data class DMXFieldResolver<T>(
+data class DmxFieldResolver<T>(
     val fieldCoordinates: FieldCoordinates,
     val dataFetcher: DataFetcher<T>
 ) {
     companion object {
         fun newTopicsResolver(typeUri: String, topicObjectTypeName: String) =
-            DMXFieldResolver<Any?>(
+            DmxFieldResolver<Any?>(
                 fieldCoordinates = FieldCoordinates.coordinates(QUERY_TYPE_NAME, "${topicObjectTypeName}_list"),
                 dataFetcher = {
                     (it.graphQlContext.get("dmx") as CoreService).getTopicsByType(typeUri)
@@ -23,41 +27,59 @@ private data class DMXFieldResolver<T>(
 
         /** Resolver for a whole topic */
         fun newTopicResolver(topicObjectTypeName: String) =
-            DMXFieldResolver<Any?>(
+            DmxFieldResolver<Any?>(
                 fieldCoordinates = FieldCoordinates.coordinates(QUERY_TYPE_NAME, topicObjectTypeName),
                 dataFetcher = {
                     val id = (it.arguments["id"] as String).toLong()
                     (it.graphQlContext.get("dmx") as CoreService).getTopic(id)
                 }
             )
+        fun newCompDefResolver(parentTypeName: String, fieldName: String, compDef: CompDef) =
+            DmxFieldResolver<Any?>(
+                fieldCoordinates = FieldCoordinates.coordinates(parentTypeName, fieldName),
+                dataFetcher = {
+                    // TODO: List result
+                    it.getSource<Topic>().childTopics.getTopicOrNull(compDef.compDefUri)?.let {
+                        when (it.type.dataTypeUri) {
+                            DmxCoreConstants.TEXT -> it.simpleValue.toString()
+                            DmxCoreConstants.BOOLEAN -> it.simpleValue.booleanValue()
+                            DmxCoreConstants.NUMBER -> it.simpleValue
+                            DmxCoreConstants.ENTITY -> it
+                            else -> null
+                        }
+                    }
+                }
+            )
 
         /** Resolver for the id field */
         fun newIdFieldResolver(objectTypeName: String) =
-            DMXFieldResolver<Any?>(
+            DmxFieldResolver<Any?>(
                 fieldCoordinates = FieldCoordinates.coordinates(objectTypeName, "id"),
                 dataFetcher = { (it.getSource() as Topic).id.toString() }
             )
 
         fun newUriFieldResolver(objectTypeName: String) =
-            DMXFieldResolver<Any?>(
+            DmxFieldResolver<Any?>(
                 fieldCoordinates = FieldCoordinates.coordinates(objectTypeName, "uri"),
                 dataFetcher = { (it.getSource() as Topic).uri }
             )
 
         fun newTypeUriFieldResolver(objectTypeName: String) =
-            DMXFieldResolver<Any?>(
+            DmxFieldResolver<Any?>(
                 fieldCoordinates = FieldCoordinates.coordinates(objectTypeName, "typeUri"),
                 dataFetcher = { (it.getSource() as Topic).typeUri }
             )
 
-        fun newValueFieldResolver(datatypeUri: String, objectTypeName: String) =
-            DMXFieldResolver<Any?>(
-                fieldCoordinates = FieldCoordinates.coordinates(objectTypeName, "value"),
+        fun newValueFieldResolver(parentObjectTypeName: String, fieldDataTypeUri: String, knownTypes: Map<String, GraphQLOutputType>) =
+            DmxFieldResolver(
+                fieldCoordinates = FieldCoordinates.coordinates(parentObjectTypeName, "value"),
                 dataFetcher = {
                     val topic = (it.getSource() as Topic)
-                    when (datatypeUri) {
-                        "dmx.core.text" -> topic.simpleValue.toString()
-                        "dmx.core.boolean" -> topic.simpleValue.booleanValue()
+                    when (fieldDataTypeUri) {
+                        DmxCoreConstants.TEXT -> topic.simpleValue.toString()
+                        DmxCoreConstants.BOOLEAN -> topic.simpleValue.booleanValue()
+                        DmxCoreConstants.NUMBER -> topic.simpleValue
+                        DmxCoreConstants.ENTITY -> topic
                         else -> null
                     }
                 }
@@ -65,9 +87,10 @@ private data class DMXFieldResolver<T>(
     }
 }
 
-private data class DMXSchemaType(
+data class TypeAndResolvers(
+    val typeUri: String,
     val objectType: GraphQLObjectType,
-    val fieldResolvers: List<DMXFieldResolver<Any?>>
+    val fieldResolvers: (types : Map<String, GraphQLOutputType>) -> List<DmxFieldResolver<Any?>>
 )
 
 private fun newInstanceFieldDefinition(
@@ -90,77 +113,169 @@ private fun newInstancesFieldDefinition(
     .type(GraphQLList.list(topicObjectType))
     .build()
 
-private val idFieldDefinition = GraphQLFieldDefinition.newFieldDefinition()
-    .name("id")
-    .type(GraphQLID)
-    .build()
+object DmxTopic {
+    val idFieldDefinition = GraphQLFieldDefinition.newFieldDefinition()
+        .name("id")
+        .type(GraphQLID)
+        .build()
 
-private val uriFieldDefinition = GraphQLFieldDefinition.newFieldDefinition()
-    .name("uri")
-    .type(GraphQLString)
-    .build()
+    val uriFieldDefinition = GraphQLFieldDefinition.newFieldDefinition()
+        .name("uri")
+        .type(GraphQLString)
+        .build()
 
-private val typeUriFieldDefinition = GraphQLFieldDefinition.newFieldDefinition()
-    .name("typeUri")
-    .type(GraphQLString)
-    .build()
+    val typeUriFieldDefinition = GraphQLFieldDefinition.newFieldDefinition()
+        .name("typeUri")
+        .type(GraphQLString)
+        .build()
 
-private fun valueFieldDefinition(topicType: TopicType) = GraphQLFieldDefinition.newFieldDefinition()
-    .name("value")
-    .type(toGraphQLType(topicType))
-    .build()
+    fun valueFieldDefinition(topicType: TopicType) = GraphQLFieldDefinition.newFieldDefinition()
+        .name("value")
+        .type(toGraphQLType(topicType))
+        .build()
 
-private fun toGraphQLType(topicType: TopicType) =
+    private fun canHaveValueField(topicType: TopicType) =
+        topicType.dataTypeUri in listOf(DmxCoreConstants.BOOLEAN, DmxCoreConstants.NUMBER, DmxCoreConstants.TEXT)
+    
+    private fun objectTypeName(typeUri: String) =
+        typeUri.replace(".", "_")
+
+    private fun childFieldDefinition(fieldName: String, type: GraphQLOutputType) = GraphQLFieldDefinition.newFieldDefinition()
+        .name(fieldName)
+        .type(type)
+        .build()
+
+    private fun fieldName(compDef: CompDef) =
+        compDef.compDefUri.replace(".", "_").replace("#", "_")
+    fun schemaType(knownTypes: Map<String, GraphQLOutputType>, topicType: TopicType): TypeAndResolvers {
+        val typeUri = topicType.uri
+        val typeName = objectTypeName(typeUri)
+
+        return TypeAndResolvers(
+            typeUri = typeUri,
+            objectType = GraphQLObjectType.newObject()
+                .name(typeName)
+                .field(idFieldDefinition)
+                .field(uriFieldDefinition)
+                .field(typeUriFieldDefinition)
+                .apply {
+                    // Value
+                    if (canHaveValueField(topicType)) {
+                        field(valueFieldDefinition(topicType))
+                    }
+
+                    for (compDef in topicType.compDefs) {
+                        val fieldName = fieldName(compDef)
+                        knownTypes.get(compDef.childTypeUri)?.let {
+                            // If it has a value field, use its value otherwise the whole (complex) type
+                            val targetType = (it as? GraphQLObjectType)?.getField("value")?.type ?: it
+
+                            field(childFieldDefinition(fieldName, targetType))
+                        } ?: println("Can't handle type ${compDef.childTypeUri} because it is not known.")
+                    }
+                }
+                .build(),
+            fieldResolvers = { types ->
+                buildList {
+                    // Resolvers needed for Query for this topic type
+                    add(DmxFieldResolver.newTopicResolver(typeName))
+                    add(DmxFieldResolver.newTopicsResolver(typeUri, typeName))
+
+                    // fields: id, uri, typeUri
+                    add(DmxFieldResolver.newIdFieldResolver(typeName))
+                    add(DmxFieldResolver.newUriFieldResolver(typeName))
+                    add(DmxFieldResolver.newTypeUriFieldResolver(typeName))
+
+                    // value
+                    if (canHaveValueField(topicType)) {
+                        add(DmxFieldResolver.newValueFieldResolver(typeName, topicType.dataTypeUri, types))
+                    }
+
+                    // children
+                    for (compDef in topicType.compDefs) {
+                        val fieldName = fieldName(compDef)
+                        add(DmxFieldResolver.newCompDefResolver(typeName, fieldName, compDef))
+                    }
+
+                }
+            }
+        )  
+    } 
+}
+
+object DmxSimpleValue {
+    private val dmxNumberTypeName = DmxCoreConstants.NUMBER.replace(".", "_")
+
+    private val intFieldDefinition: GraphQLFieldDefinition = GraphQLFieldDefinition.newFieldDefinition()
+        .name("int")
+        .type(GraphQLInt)
+        .build()
+
+    private val doubleFieldDefinition: GraphQLFieldDefinition = GraphQLFieldDefinition.newFieldDefinition()
+        .name("double")
+        .type(GraphQLFloat)
+        .build()
+
+    val objecType = GraphQLObjectType.newObject()
+        .name(dmxNumberTypeName)
+        .field(intFieldDefinition)
+        .field(doubleFieldDefinition)
+        .build()
+
+    val schemaType = TypeAndResolvers(
+        typeUri = DmxCoreConstants.NUMBER,
+        objectType = objecType,
+        fieldResolvers = { types ->
+            listOf(
+                DmxFieldResolver(
+                    fieldCoordinates = FieldCoordinates.coordinates(dmxNumberTypeName, intFieldDefinition.name),
+                    dataFetcher = { runCatching { (it.getSource() as SimpleValue).intValue() }.getOrNull() }
+                ),
+                DmxFieldResolver(
+                    fieldCoordinates = FieldCoordinates.coordinates(dmxNumberTypeName, doubleFieldDefinition.name),
+                    dataFetcher = { runCatching { (it.getSource() as SimpleValue).doubleValue() } .getOrNull() }
+                ),
+            )
+        }
+    )
+
+}
+
+
+private fun toGraphQLType(topicType: TopicType): GraphQLOutputType =
     when (topicType.dataTypeUri) {
-        "dmx.core.text" -> GraphQLString
-        "dmx.core.boolean" -> GraphQLBoolean
+        DmxCoreConstants.TEXT -> GraphQLString
+        DmxCoreConstants.BOOLEAN -> GraphQLBoolean
+        DmxCoreConstants.NUMBER -> DmxSimpleValue.objecType
+        // Unknown types
         else -> GraphQLString
     }
 
 fun generateDMXSchema(dmx: CoreService): GraphQLSchema {
-    val typeUris = listOf("dmx.cooking.baking_ingredient", "dmx.cooking.vegan")
-
-    val schemaTypes = typeUris.map { typeUri ->
-        val topicType = dmx.getTopicType(typeUri)
-        val topicObjectTypeName = typeUri.replace(".", "_")
-
-        DMXSchemaType(
-            objectType = GraphQLObjectType.newObject()
-                .name(topicObjectTypeName)
-                .field(idFieldDefinition)
-                .field(uriFieldDefinition)
-                .field(typeUriFieldDefinition)
-                .field(valueFieldDefinition(topicType))
-                .build(),
-            fieldResolvers = listOf(
-                // Actual topic resolver for Query
-                DMXFieldResolver.newTopicResolver(topicObjectTypeName),
-                DMXFieldResolver.newTopicsResolver(typeUri, topicObjectTypeName),
-
-                // id, uri, typeUri
-                DMXFieldResolver.newIdFieldResolver(topicObjectTypeName),
-                DMXFieldResolver.newUriFieldResolver(topicObjectTypeName),
-                DMXFieldResolver.newTypeUriFieldResolver(topicObjectTypeName),
-
-                // value
-                DMXFieldResolver.newValueFieldResolver(topicType.dataTypeUri, topicObjectTypeName)
-            )
-        )
-
+    val knownTypes = mutableMapOf<String, GraphQLOutputType>()
+    val topicTypeSchemaTypes = dmx.allTopicTypes.map { topicType ->
+        DmxTopic.schemaType(knownTypes, topicType).also {
+            knownTypes.put(it.typeUri, it.objectType)
+        }
     }
 
+    // Gives instance and list query for all topic types
     val queryType = GraphQLObjectType.newObject()
         .name(QUERY_TYPE_NAME).apply {
-            for (schemaType in schemaTypes) {
+            for (schemaType in topicTypeSchemaTypes) {
                 field(newInstanceFieldDefinition(schemaType.objectType))
                 field(newInstancesFieldDefinition(schemaType.objectType))
             }
         }
         .build()
 
+    // Adds types that can be children
+    val schemaTypes = topicTypeSchemaTypes +
+            DmxSimpleValue.schemaType
+
     val codeRegistry: GraphQLCodeRegistry = GraphQLCodeRegistry.newCodeRegistry().apply {
         for (schemaType in schemaTypes) {
-            for (fieldResolver in schemaType.fieldResolvers) {
+            for (fieldResolver in schemaType.fieldResolvers(knownTypes)) {
                 dataFetcher(fieldResolver.fieldCoordinates, fieldResolver.dataFetcher)
             }
         }
