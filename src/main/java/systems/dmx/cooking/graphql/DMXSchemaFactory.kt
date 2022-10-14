@@ -1,6 +1,7 @@
 package systems.dmx.cooking.graphql
 
 import graphql.Scalars.*
+import graphql.scalars.ExtendedScalars.GraphQLLong
 import graphql.schema.*
 import systems.dmx.core.CompDef
 import systems.dmx.core.Topic
@@ -41,10 +42,10 @@ data class DmxFieldResolver<T>(
                     // TODO: List result
                     it.getSource<Topic>().childTopics.getTopicOrNull(compDef.compDefUri)?.let {
                         when (it.type.dataTypeUri) {
-                            DmxCoreConstants.TEXT -> it.simpleValue.toString()
+                            DmxCoreConstants.TEXT, DmxCoreConstants.HTML -> it.simpleValue.toString()
                             DmxCoreConstants.BOOLEAN -> it.simpleValue.booleanValue()
                             DmxCoreConstants.NUMBER -> it.simpleValue
-                            DmxCoreConstants.ENTITY -> it
+                            DmxCoreConstants.ENTITY, DmxCoreConstants.COMPOSITE, DmxCoreConstants.VALUE -> it
                             else -> null
                         }
                     }
@@ -76,10 +77,10 @@ data class DmxFieldResolver<T>(
                 dataFetcher = {
                     val topic = (it.getSource() as Topic)
                     when (fieldDataTypeUri) {
-                        DmxCoreConstants.TEXT -> topic.simpleValue.toString()
+                        DmxCoreConstants.TEXT, DmxCoreConstants.HTML -> topic.simpleValue.toString()
                         DmxCoreConstants.BOOLEAN -> topic.simpleValue.booleanValue()
                         DmxCoreConstants.NUMBER -> topic.simpleValue
-                        DmxCoreConstants.ENTITY -> topic
+                        DmxCoreConstants.ENTITY, DmxCoreConstants.COMPOSITE, DmxCoreConstants.VALUE -> topic
                         else -> null
                     }
                 }
@@ -116,17 +117,17 @@ private fun newInstancesFieldDefinition(
 object DmxTopic {
     val idFieldDefinition = GraphQLFieldDefinition.newFieldDefinition()
         .name("id")
-        .type(GraphQLID)
+        .type(GraphQLNonNull.nonNull(GraphQLID))
         .build()
 
     val uriFieldDefinition = GraphQLFieldDefinition.newFieldDefinition()
         .name("uri")
-        .type(GraphQLString)
+        .type(GraphQLNonNull.nonNull(GraphQLString))
         .build()
 
     val typeUriFieldDefinition = GraphQLFieldDefinition.newFieldDefinition()
         .name("typeUri")
-        .type(GraphQLString)
+        .type(GraphQLNonNull.nonNull(GraphQLString))
         .build()
 
     fun valueFieldDefinition(topicType: TopicType) = GraphQLFieldDefinition.newFieldDefinition()
@@ -135,7 +136,7 @@ object DmxTopic {
         .build()
 
     private fun canHaveValueField(topicType: TopicType) =
-        topicType.dataTypeUri in listOf(DmxCoreConstants.BOOLEAN, DmxCoreConstants.NUMBER, DmxCoreConstants.TEXT)
+        topicType.dataTypeUri in listOf(DmxCoreConstants.BOOLEAN, DmxCoreConstants.NUMBER, DmxCoreConstants.TEXT, DmxCoreConstants.HTML)
     
     private fun objectTypeName(typeUri: String) =
         typeUri.replace(".", "_")
@@ -206,6 +207,11 @@ object DmxTopic {
 object DmxSimpleValue {
     private val dmxNumberTypeName = DmxCoreConstants.NUMBER.replace(".", "_")
 
+    private val longFieldDefinition: GraphQLFieldDefinition = GraphQLFieldDefinition.newFieldDefinition()
+        .name("long")
+        .type(GraphQLLong)
+        .build()
+
     private val intFieldDefinition: GraphQLFieldDefinition = GraphQLFieldDefinition.newFieldDefinition()
         .name("int")
         .type(GraphQLInt)
@@ -233,8 +239,12 @@ object DmxSimpleValue {
                 ),
                 DmxFieldResolver(
                     fieldCoordinates = FieldCoordinates.coordinates(dmxNumberTypeName, doubleFieldDefinition.name),
-                    dataFetcher = { runCatching { (it.getSource() as SimpleValue).doubleValue() } .getOrNull() }
+                    dataFetcher = { runCatching { (it.getSource() as SimpleValue).doubleValue() }.getOrNull() }
                 ),
+                DmxFieldResolver(
+                    fieldCoordinates = FieldCoordinates.coordinates(dmxNumberTypeName, longFieldDefinition.name),
+                    dataFetcher = { runCatching { (it.getSource() as SimpleValue).longValue() }.getOrNull() }
+                )
             )
         }
     )
@@ -244,7 +254,7 @@ object DmxSimpleValue {
 
 private fun toGraphQLType(topicType: TopicType): GraphQLOutputType =
     when (topicType.dataTypeUri) {
-        DmxCoreConstants.TEXT -> GraphQLString
+        DmxCoreConstants.TEXT, DmxCoreConstants.HTML -> GraphQLString
         DmxCoreConstants.BOOLEAN -> GraphQLBoolean
         DmxCoreConstants.NUMBER -> DmxSimpleValue.objecType
         // Unknown types
