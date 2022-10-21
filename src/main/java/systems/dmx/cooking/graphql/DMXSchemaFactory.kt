@@ -80,8 +80,8 @@ data class DmxFieldResolver<T>(
                         DmxCoreConstants.TEXT, DmxCoreConstants.HTML -> topic.simpleValue.toString()
                         DmxCoreConstants.BOOLEAN -> topic.simpleValue.booleanValue()
                         DmxCoreConstants.NUMBER -> topic.simpleValue
-                        DmxCoreConstants.ENTITY, DmxCoreConstants.COMPOSITE, DmxCoreConstants.VALUE -> topic
-                        else -> null
+                        //DmxCoreConstants.ENTITY, DmxCoreConstants.COMPOSITE, DmxCoreConstants.VALUE -> topic
+                        else -> topic.simpleValue.toString()
                     }
                 }
             )
@@ -135,9 +135,6 @@ object DmxTopic {
         .type(toGraphQLType(topicType))
         .build()
 
-    private fun canHaveValueField(topicType: TopicType) =
-        topicType.dataTypeUri in listOf(DmxCoreConstants.BOOLEAN, DmxCoreConstants.NUMBER, DmxCoreConstants.TEXT, DmxCoreConstants.HTML)
-    
     private fun objectTypeName(typeUri: String) =
         typeUri.replace(".", "_")
 
@@ -161,9 +158,7 @@ object DmxTopic {
                 .field(typeUriFieldDefinition)
                 .apply {
                     // Value
-                    if (canHaveValueField(topicType)) {
-                        field(valueFieldDefinition(topicType))
-                    }
+                    field(valueFieldDefinition(topicType))
 
                     for (compDef in topicType.compDefs) {
                         val fieldName = fieldName(compDef)
@@ -188,9 +183,7 @@ object DmxTopic {
                     add(DmxFieldResolver.newTypeUriFieldResolver(typeName))
 
                     // value
-                    if (canHaveValueField(topicType)) {
-                        add(DmxFieldResolver.newValueFieldResolver(typeName, topicType.dataTypeUri, types))
-                    }
+                    add(DmxFieldResolver.newValueFieldResolver(typeName, topicType.dataTypeUri, types))
 
                     // children
                     for (compDef in topicType.compDefs) {
